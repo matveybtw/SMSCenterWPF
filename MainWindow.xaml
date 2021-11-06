@@ -1,0 +1,34 @@
+﻿<Window x:Class="PorjectSMSCWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PorjectSMSCWPF" xmlns:viewmodels="clr-namespace:PorjectSMSCWPF.Viewmodels" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewmodel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid Margin="0,0,2,-1">
+        <TextBox Text="{Binding Path=Text.Item, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="161" Margin="43,188,0,0" VerticalAlignment="Top" Width="247"/>
+        <ComboBox ItemsSource="{Binding TypesOfMessage}" SelectedValue="{Binding Path=chosentype.Item,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="type" HorizontalAlignment="Left" Margin="43,151,0,0" VerticalAlignment="Top" Width="120" >
+
+        </ComboBox>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="43,25,0,0" Text="{Binding Path = Login.Item, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="43,65,0,0" Text="{Binding Path = Password.Item, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="43,107,0,0" Text="{Binding Path = Phone.Item, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button IsEnabled="True" Command="{Binding SendMessage}" Content="Отправить" HorizontalAlignment="Left" Margin="43,367,0,0" VerticalAlignment="Top" Width="75"/>
+        <DataGrid  AutoGenerateColumns="False" ItemsSource="{Binding SentMessages}" Margin="319,31,10,78" IsSynchronizedWithCurrentItem="True" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}"/>
+                <DataGridTextColumn Header="Кому" Binding="{Binding Path=Phone}"/>
+                <DataGridTextColumn Header="Текст сообщения" Binding="{Binding Path=Message}"/>
+                <DataGridTextColumn Header="Тип сообщения" Binding="{Binding Path=MessageType}"/>
+                <DataGridTextColumn Header="Время отправки" Binding="{Binding Path=TimeSent}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="43,4,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="43,44,0,0" VerticalAlignment="Top"/>
+        <Label Content="Телефон (формат +38(0XX)XXXXXXX" HorizontalAlignment="Left" Margin="43,84,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тип отправляемого сообщения" HorizontalAlignment="Left" Margin="43,126,0,0" VerticalAlignment="Top"/>
+        <Label Content="История отправленных сообщений" HorizontalAlignment="Left" Margin="319,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.541,1.486"/>
+
+    </Grid>
+</Window>
